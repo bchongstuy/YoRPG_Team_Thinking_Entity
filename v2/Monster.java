@@ -1,9 +1,9 @@
 //Team 3: Team Thinking Entity - Jude Grodesky, Brandon Chong, Ricky Lin
 //APCS1 pd02
-//HW28 -- Ye Olde Role Playing Game
-//2017-11-09
+//HW28 -- Ye Olde Role Playing Game, Improved
+//2017-11-11
 
-public class Monster{
+public class Monster extends Character{
 
     //Attributes every Monster has
     private int HP;
