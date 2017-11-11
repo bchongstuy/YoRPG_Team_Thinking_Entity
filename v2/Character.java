@@ -25,7 +25,7 @@ public class Character{
     }
 
     //Reduces Character's HP
-    public int lowerHP(int loss){
+    public void lowerHP(int loss){
 	HP -= loss;
     }
 
