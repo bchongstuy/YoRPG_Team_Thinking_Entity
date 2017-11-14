@@ -1,6 +1,6 @@
 public class Warrior extends Protagonist{
 
-    public Warrior (string name){
+    public Warrior (String name){
 	super(name);
 	strength = 75;
     }

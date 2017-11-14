@@ -16,15 +16,16 @@ public class YoRPG
   public final static int MAX_ENCOUNTERS = 5;
 
   //each round, a Protagonist and a Monster will be instantiated...
-  private Protagonist pat;   //Is it man or woman?
-  private Monster smaug; //Friendly generic monster name?
+  protected Protagonist pat;   //Is it man or woman?
+  protected Monster smaug; //Friendly generic monster name?
+  protected int pickClass;
 
-  private int moveCount;
-  private boolean gameOver;
-  private int difficulty;
+  protected int moveCount;
+  protected boolean gameOver;
+  protected int difficulty;
 
-  private InputStreamReader isr;
-  private BufferedReader in;
+  protected InputStreamReader isr;
+  protected BufferedReader in;
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -66,6 +67,18 @@ public class YoRPG
     }
     catch ( IOException e ) { }
 
+    s = "\nChoose your class: \n";
+    s += "\t1: Warrior\n";
+    s += "\t2: Tank\n";
+    s += "\t3: Cleric\n";
+    s += "Selection: ";
+    System.out.print( s );
+
+    try {
+	pickClass = Integer.parseInt ( in.readLine() );
+    }
+    catch ( IOException e ) { }
+	
     s = "Intrepid protagonist, what doth thy call thyself? (State your name): ";
     System.out.print( s );
 
@@ -74,8 +87,18 @@ public class YoRPG
     }
     catch ( IOException e ) { }
 
+    pat = new Protagonist(name);
+    
     //instantiate the player's character
-    pat = new Protagonist( name );
+    if (pickClass == 1) {
+	Protagonist pat = new Warrior(name);
+    }
+    else if (pickClass == 2) {
+	Protagonist pat = new Tank(name);
+    }
+    else {
+	Protagonist pat = new Cleric(name);
+    }
 
   }//end newGame()
 
@@ -97,7 +120,7 @@ public class YoRPG
 	    System.out.println( "\nLo, yonder monster approacheth!" );
 
 	    smaug = new Monster();
-
+	    
 	    while( smaug.isAlive() && pat.isAlive() ) {
 
         // Give user the option of using a special attack:
