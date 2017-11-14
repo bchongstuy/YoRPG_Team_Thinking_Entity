@@ -6,10 +6,7 @@
 public class Monster extends Character{
 
     //Attributes every Monster has
-    private int HP;
-    private int strength;
-    private int defense;
-    private int attack_rating;
+    
 
     //Inintializes instance varibales
     public Monster() {
@@ -19,25 +16,6 @@ public class Monster extends Character{
 	attack_rating = 1;
     }
 
-    //Returns whether the Monster is alive or dead ( 0 HP )
-    public boolean isAlive(){
-	if (HP <= 0){
-	    return false;
-	}
-	else{
-	    return true;
-	}
-    }
-
-    //Accessor for defense
-    public int getDefense(){
-	return defense;
-    }
-
-    //Reduces the Monster's HP
-    public void lowerHP(int loss){
-	HP -= loss;
-    }
 
     //Attacks a warrior and deals damage
     public int attack(Protagonist w){

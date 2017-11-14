@@ -6,10 +6,10 @@
 public class Character{
 
     //Attributes every Character needs
-    private int HP;
-    private int strength;
-    private int defense;
-    private double attack_rating;
+    protected int HP;
+    protected int strength;
+    protected int defense;
+    protected double attack_rating;
 
     //returns whether the Character is alive or dead
     public boolean isAlive(){
@@ -30,12 +30,12 @@ public class Character{
     }
 
     //Calculates attacks
-    public int attack(Monster m){
-	int damage = (int)(strength * attack_rating) - m.getDefense();
+    public int attack(Character c){
+	int damage = (int)(strength * attack_rating) - c.getDefense();
 	if (damage < 0){
 	    damage = 0;
 	}
-	m.lowerHP(damage);
+	c.lowerHP(damage);
 	return damage;
     }
 }
