@@ -11,6 +11,7 @@ public class Character{
     protected int defense;
     protected double attack_rating;
 
+    
     //returns whether the Character is alive or dead
     public boolean isAlive(){
 	if (HP <= 0){

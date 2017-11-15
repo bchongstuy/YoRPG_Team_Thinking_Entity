@@ -5,7 +5,7 @@ public class Warrior extends Protagonist{
 	strength = 75;
     }
 
-    public static String about(){
+    public String about(){
 	return "A warrior has trained with a fearsome sword, giving him more strength";
     }
 }

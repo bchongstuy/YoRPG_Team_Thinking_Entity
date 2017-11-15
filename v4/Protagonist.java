@@ -3,7 +3,7 @@
 //HW28 -- Ye Olde Role Playing Game, Improved
 //2017-11-11
 
-public class Protagonist extends Character{
+public abstract class Protagonist extends Character{
     
     //Attributes every Protagonist needs
     protected String name;
@@ -17,6 +17,8 @@ public class Protagonist extends Character{
 	attack_rating = 0.5;
     }
 
+    public abstract String about();
+    
     //Accessor for name
     public String getName(){
 	return name;

@@ -6,7 +6,7 @@ public class Cleric extends Protagonist {
 	HP = 200;
     }
 
-    public static String about(){
+    public String about(){
 	return "A clerics divine connection grants him greater HP" ;
     }
 }

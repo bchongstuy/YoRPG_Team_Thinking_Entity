@@ -87,7 +87,6 @@ public class YoRPG
     }
     catch ( IOException e ) { }
 
-    pat = new Protagonist(name);
     
     //instantiate the player's character
     if (pickClass == 1) {
