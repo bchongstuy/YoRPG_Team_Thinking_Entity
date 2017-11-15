@@ -35,16 +35,10 @@ public abstract class Protagonist extends Character{
     }
 
    //Ready's a special attack by reducing defence and increasing attack
-    public void specialize(){
-	defense -= 25;
-	attack_rating += 0.5;
-    }
+    public abstract void specialize();
     
     //Resets for a normal attack by reducing attack and increasing defense
-    public void normalize(){
-	defense += 25;
-	attack_rating -= 0.5;
-    }
+    public abstract void normalize();
 
     
     
