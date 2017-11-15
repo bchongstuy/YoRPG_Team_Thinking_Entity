@@ -1,7 +1,8 @@
-APCS1 pd 02
-Team 3 : Team Thinking Entity
+APCS1 pd 02        
+Team 3 : Team Thinking Entity       
 Jude Grodesky, Brandon Chong, Ricky Lin
-YoRPG
+         
+YoRPG         
 
 Characters:
 
