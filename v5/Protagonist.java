@@ -11,8 +11,8 @@ public abstract class Protagonist extends Character{
     //constructor (customizable name)
     public Protagonist (String newName){
 	name = newName;
-	HP = 100;
-	strength = 50;
+	HP = 1000;
+	strength = 70;
 	defense = 50;
 	attack_rating = 0.5;
     }
@@ -40,6 +40,8 @@ public abstract class Protagonist extends Character{
     //Resets for a normal attack by reducing attack and increasing defense
     public abstract void normalize();
 
+    //Heals but really really random
+    public abstract void heal();
     
     
 }

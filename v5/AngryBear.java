@@ -1,12 +1,12 @@
 
 public class AngryBear extends Monster{
 
-    public AngryBear{
+    public AngryBear() {
 	super();
-	HP = 200;
+	HP += 100;
     }
 
-    public static String about(){
+    public String about(){
 	return "AngryBears are resilient, granting them increased HP";
     }
 

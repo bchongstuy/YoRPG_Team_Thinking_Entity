@@ -3,7 +3,7 @@ public class Cleric extends Protagonist {
 
     public Cleric (String name){
 	super(name);
-	HP = 200;
+	HP += 100;
     }
 
     public String about(){
@@ -18,6 +18,11 @@ public class Cleric extends Protagonist {
 
     public void normalize(){
 	defense += 25;
+	attack_rating -= 0.5;
+    }
+
+    public void heal() {
+	HP += (int) (Math.random() * 1000);
 	attack_rating -= 0.5;
     }
 }

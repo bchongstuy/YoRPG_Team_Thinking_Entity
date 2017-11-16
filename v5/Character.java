@@ -3,7 +3,7 @@
 //HW30 -- Ye Olde Role Playing Game , Improved
 //2017-11-11
 
-public class Character{
+abstract class Character{
 
     //Attributes every Character needs
     protected int HP;
@@ -11,6 +11,7 @@ public class Character{
     protected int defense;
     protected double attack_rating;
 
+    public abstract String about();
     
     //returns whether the Character is alive or dead
     public boolean isAlive(){

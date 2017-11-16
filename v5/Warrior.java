@@ -2,7 +2,7 @@ public class Warrior extends Protagonist{
 
     public Warrior (String name){
 	super(name);
-	strength = 75;
+	strength += 25;
     }
 
     public String about(){
@@ -18,7 +18,10 @@ public class Warrior extends Protagonist{
 	defense += 25;
 	attack_rating -= 0.5;
     }
-    
+    public void heal() {
+	HP += (int) (Math.random() * 1000);
+	attack_rating -= 0.5;
+    }
 }
 
 

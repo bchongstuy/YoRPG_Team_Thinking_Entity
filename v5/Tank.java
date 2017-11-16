@@ -2,7 +2,7 @@ public class Tank extends Protagonist{
 
     public Tank (String name){
 	super(name);
-	defense = 75;
+	defense += 20;
     }
 
     public  String about(){
@@ -18,4 +18,9 @@ public class Tank extends Protagonist{
 	defense += 25;
 	attack_rating -= 0.5;
     }
+    public void heal() {
+	HP += (int) (Math.random() * 1000);
+	attack_rating -= 0.5;
+    }
 }
+

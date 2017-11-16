@@ -11,12 +11,15 @@ public class Monster extends Character{
     //Inintializes instance varibales
     public Monster() {
 	HP = 150;
-	strength = (int)(Math.random() * 45) + 20;
+	strength = (int)(Math.random() * 45) + 50;
 	defense = 20;
 	attack_rating = 1;
     }
 
-
+    public String about() {
+	return "A normal monster approaches";
+    }
+    
     //Attacks a warrior and deals damage
     public int attack(Protagonist w){
 	int damage = (int)(strength * attack_rating) - w.getDefense();

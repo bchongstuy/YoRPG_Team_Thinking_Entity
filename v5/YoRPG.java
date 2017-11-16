@@ -10,192 +10,213 @@ import java.util.*;
 
 public class YoRPG
 {
-  // ~~~~~~~~~~~ INSTANCE VARIABLES ~~~~~~~~~~~
+    // ~~~~~~~~~~~ INSTANCE VARIABLES ~~~~~~~~~~~
 
-  //change this constant to set number of encounters in a game
-  public final static int MAX_ENCOUNTERS = 5;
+    //change this constant to set number of encounters in a game
+    public final static int MAX_ENCOUNTERS = 7;
 
-  //each round, a Protagonist and a Monster will be instantiated...
-  protected Protagonist pat;   //Is it man or woman?
-  protected Monster smaug; //Friendly generic monster name?
-  protected int pickClass;
+    //each round, a Protagonist and a Monster will be instantiated...
+    protected Protagonist pat;   //Is it man or woman?
+    protected Monster smaug; //Friendly generic monster name?
+    protected int pickClass;
+    protected int randMonster;
 
-  protected int moveCount;
-  protected boolean gameOver;
-  protected int difficulty;
+    protected int moveCount;
+    protected boolean gameOver;
+    protected int difficulty;
 
-  protected InputStreamReader isr;
-  protected BufferedReader in;
+    protected InputStreamReader isr;
+    protected BufferedReader in;
 
     private static int killed = 0;
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-  // ~~~~~~~~~~ DEFAULT CONSTRUCTOR ~~~~~~~~~~~
-  public YoRPG()
-  {
-    moveCount = 0;
-    gameOver = false;
-    isr = new InputStreamReader( System.in );
-    in = new BufferedReader( isr );
-    newGame();
-  }
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~ DEFAULT CONSTRUCTOR ~~~~~~~~~~~
+    public YoRPG()
+    {
+	moveCount = 0;
+	gameOver = false;
+	isr = new InputStreamReader( System.in );
+	in = new BufferedReader( isr );
+	newGame();
+    }
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-  // ~~~~~~~~~~~~~~ METHODS ~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~~~ METHODS ~~~~~~~~~~~~~~~~~~~
 
-  /*=============================================
-    void newGame() -- gathers info to begin a new game
-    pre:  
-    post: according to user input, modifies instance var for difficulty 
-    and instantiates a Protagonist
-    =============================================*/
-  public void newGame()
-  {
-    String s;
-    String name = "";
-    s = "~~~ Welcome to Ye Olde RPG! ~~~\n";
+    /*=============================================
+      void newGame() -- gathers info to begin a new game
+      pre:  
+      post: according to user input, modifies instance var for difficulty 
+      and instantiates a Protagonist
+      =============================================*/
+    public void newGame()
+    {
+	String s;
+	String name = "";
+	s = "~~~ Welcome to Ye Olde RPG! ~~~\n";
 
-    s += "\nChoose your difficulty: \n";
-    s += "\t1: Easy\n";
-    s += "\t2: Not so easy\n";
-    s += "\t3: Beowulf hath nothing on me. Bring it on.\n";
-    s += "Selection: ";
-    System.out.print( s );
+	s += "\nChoose your difficulty: \n";
+	s += "\t1: Easy\n";
+	s += "\t2: Not so easy\n";
+	s += "\t3: Beowulf hath nothing on me. Bring it on.\n";
+	s += "Selection: ";
+	System.out.print( s );
 
-    try {
+	try {
 	    difficulty = Integer.parseInt( in.readLine() );
-    }
-    catch ( IOException e ) { }
+	}
+	catch ( IOException e ) { }
 
-    s = "\nChoose your class: \n";
-    s += "\t1: Warrior\n";
-    s += "\t2: Tank\n";
-    s += "\t3: Cleric\n";
-    s += "Selection: ";
-    System.out.print( s );
+	s = "\nChoose your class: \n";
+	s += "\t1: Warrior\n";
+	s += "\t2: Tank\n";
+	s += "\t3: Cleric\n";
+	s += "Selection: ";
+	System.out.print( s );
 
-    try {
-	pickClass = Integer.parseInt ( in.readLine() );
-    }
-    catch ( IOException e ) { }
+	try {
+	    pickClass = Integer.parseInt ( in.readLine() );
+	}
+	catch ( IOException e ) { }
 	
-    s = "Intrepid protagonist, what doth thy call thyself? (State your name): ";
-    System.out.print( s );
+	s = "Intrepid protagonist, what doth thy call thyself? (State your name): ";
+	System.out.print( s );
 
-    try {
+	try {
 	    name = in.readLine();
-    }
-    catch ( IOException e ) { }
+	}
+	catch ( IOException e ) { }
 
     
-    //instantiate the player's character
-    if (pickClass == 1) {
-        pat = new Warrior(name);
-    }
-    else if (pickClass == 2) {
-	pat = new Tank(name);
-    }
-    else {
-	pat = new Cleric(name);
-    }
+	//instantiate the player's character
+	if (pickClass == 1) {
+	    pat = new Warrior(name);
+	}
+	else if (pickClass == 2) {
+	    pat = new Tank(name);
+	}
+	else {
+	    pat = new Cleric(name);
+	}
 
-  }//end newGame()
+    }//end newGame()
 
 
-  /*=============================================
-    boolean playTurn -- simulates a round of combat
-    pre:  Protagonist pat has been initialized
-    post: Returns true if player wins (monster dies).
-    Returns false if monster wins (player dies).
-    =============================================*/
-  public boolean playTurn()
-  {
-    int i = 1;
-    int d1, d2;
+    /*=============================================
+      boolean playTurn -- simulates a round of combat
+      pre:  Protagonist pat has been initialized
+      post: Returns true if player wins (monster dies).
+      Returns false if monster wins (player dies).
+      =============================================*/
+    public boolean playTurn()
+    {
+	int i = 1;
+	int d1, d2;
 
-    if ( Math.random() >= ( difficulty / 3.0 ) )
+	if ( Math.random() >= ( difficulty / 3.0 ) )
 	    System.out.println( "\nNothing to see here. Move along!" );
-    else {
+	else {
 	    System.out.println( "\nLo, yonder monster approacheth!" );
 
 	    smaug = new Monster();
+
+	    randMonster = (int)(Math.random() * 3)+1 ;
+
+	    if (randMonster == 1) {
+		smaug = new AngryBear();
+		System.out.println(smaug.about());
+	    }
+	    else if (randMonster == 2) {
+		smaug = new RabidWolf();
+		System.out.println(smaug.about());
+	    }
+	    else if (randMonster == 3) {
+		smaug = new FlyingBat();
+		System.out.println(smaug.about());
+	    }
+	    else {
+		System.out.println(smaug.about());
+	    }
 	    
 	    while( smaug.isAlive() && pat.isAlive() ) {
 
-        // Give user the option of using a special attack:
-        // If you land a hit, you incur greater damage,
-        // ...but if you get hit, you take more damage.
-        try {
-          System.out.println( "\nDo you feel lucky?" );
-          System.out.println( "\t1: Nay.\n\t2: Aye!" );
-          i = Integer.parseInt( in.readLine() );
-        }
-        catch ( IOException e ) { }
+		// Give user the option of using a special attack:
+		// If you land a hit, you incur greater damage,
+		// ...but if you get hit, you take more damage.
+		try {
+		    System.out.println( "\nDo you feel lucky?" );
+		    System.out.println( "\t1: Nay.\n\t2: Aye!\n\t3: Uhh..." );
+		    i = Integer.parseInt( in.readLine() );
+		}
+		catch ( IOException e ) { }
 
-        if ( i == 2 )
-          pat.specialize();
-        else
-          pat.normalize();
+		if ( i == 2 )
+		    pat.specialize();
+		else if ( i == 3 )
+		    pat.heal();
+		else
+		    pat.normalize();
 
-        d1 = pat.attack( smaug );
-        d2 = smaug.attack( pat );
+		d1 = pat.attack( smaug );
+		d2 = smaug.attack( pat );
 
-        System.out.println( "\n" + pat.getName() + " dealt " + d1 +
-                            " points of damage.");
+		System.out.println( "\n" + pat.getName() + " dealt " + d1 +
+				    " points of damage.");
 
-        System.out.println( "\n" + "Ye Olde Monster smacked " + pat.getName() +
-                            " for " + d2 + " points of damage.");
+		System.out.println( "\n" + "Ye Olde Monster smacked " + pat.getName() +
+				    " for " + d2 + " points of damage.");
 	    }//end while
 
 	    //option 1: you & the monster perish
 	    if ( !smaug.isAlive() && !pat.isAlive() ) {
-        System.out.println( "'Twas an epic battle, to be sure... " + 
-                            "You cut ye olde monster down, but " +
-                            "with its dying breath ye olde monster. " +
-                            "laid a fatal blow upon thy skull." );
-        return false;
+		System.out.println( "'Twas an epic battle, to be sure... " + 
+				    "You cut ye olde monster down, but " +
+				    "with its dying breath ye olde monster. " +
+				    "laid a fatal blow upon thy skull." );
+		return false;
 	    }
 	    //option 2: you slay the beast
 	    else if ( !smaug.isAlive() ) {
-	killed += 1;
-        System.out.println( "HuzzaaH! Ye olde monster hath been slain!" + "\n" +"Total Slain: " +  killed );
-        return true;
+		killed += 1;
+		System.out.println( "HuzzaaH! Ye olde monster hath been slain!" + "\n" +"Total Slain: " +  killed );
+		return true;
 	    }
 	    //option 3: the beast slays you
 	    else if ( !pat.isAlive() ) {
-        System.out.println( "Ye olde self hath expired. You got dead." );
-        return false;
+		System.out.println( "Ye olde self hath expired. You got dead." );
+		return false;
 	    }
-    }//end else
+	}//end else
 
-    return true;
-  }//end playTurn()
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-  public static void main( String[] args )
-  {
-    //As usual, move the begin-comment bar down as you progressively 
-    //test each new bit of functionality...
+	return true;
+    }//end playTurn()
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-    //loading...
-    YoRPG game = new YoRPG();
+    public static void main( String[] args )
+    {
+	//As usual, move the begin-comment bar down as you progressively 
+	//test each new bit of functionality...
 
-    int encounters = 0;
 
-    while( encounters < MAX_ENCOUNTERS ) {
-    if ( !game.playTurn() )
+	//loading...
+	YoRPG game = new YoRPG();
+
+	int encounters = 0;
+
+	while( encounters < MAX_ENCOUNTERS ) {
+	    if ( !game.playTurn() )
 		break;
-    encounters++;
-    System.out.println();
-    }
+	    encounters++;
+	    System.out.println();
+	}
 
-    System.out.println( "Thy game doth be over." + "\n" + "Total Slain: " + killed);
+	System.out.println( "Thy game doth be over." + "\n" + "Total Slain: " + killed);
     
-  }//end main
+    }//end main
 
 }//end class YoRPG
 

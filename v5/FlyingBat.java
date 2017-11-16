@@ -1,12 +1,12 @@
 
 public class FlyingBat extends Monster{
 
-    public FlyingBat{
+    public FlyingBat(){
 	super();
-	defense = 40;
+	defense += 10;
     }
 
-    public static String about(){
+    public String about(){
 	return "FlyingBats are hard to hit, granting them defense";
     }
 
