@@ -26,6 +26,8 @@ public class YoRPG
 
   protected InputStreamReader isr;
   protected BufferedReader in;
+
+    private static int killed = 0;
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -157,7 +159,8 @@ public class YoRPG
 	    }
 	    //option 2: you slay the beast
 	    else if ( !smaug.isAlive() ) {
-        System.out.println( "HuzzaaH! Ye olde monster hath been slain!" );
+	killed += 1;
+        System.out.println( "HuzzaaH! Ye olde monster hath been slain!" + "\n" +"Total Slain: " +  killed );
         return true;
 	    }
 	    //option 3: the beast slays you
@@ -190,7 +193,7 @@ public class YoRPG
     System.out.println();
     }
 
-    System.out.println( "Thy game doth be over." );
+    System.out.println( "Thy game doth be over." + "\n" + "Total Slain: " + killed);
     
   }//end main
 
